@@ -287,8 +287,10 @@ class ChatBot extends Component {
         renderedSteps.pop();
       }
 
-      const trigger = this.getTriggeredStep(currentStep.trigger, currentStep.value);
-      let nextStep = Object.assign({}, steps[trigger]);
+      const triggerResponse = this.getTriggeredStep(currentStep.trigger, currentStep.value);
+      const isComplexTrigger = typeof triggerResponse === 'object';
+      let nextStep = Object.assign({}, steps[isComplexTrigger ? triggerResponse.trigger : triggerResponse]);
+      nextStep.complexValue = isComplexTrigger ? triggerResponse : undefined;
 
       if (nextStep.message) {
         nextStep.message = this.getStepMessage(nextStep.message);
