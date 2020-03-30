@@ -36,12 +36,14 @@ class CustomStep extends Component {
 
   render() {
     const { loading } = this.state;
-    const { style } = this.props;
+    const { style, step } = this.props;
+    const { containerClass } = step;
+    const StepContainer = containerClass || CustomStepContainer;
 
     return (
-      <CustomStepContainer className="rsc-cs" style={style}>
-        {loading ? <Loading /> : this.renderComponent()}
-      </CustomStepContainer>
+      <StepContainer className="rsc-cs" style={style}>
+        {this.renderComponent()}
+      </StepContainer>
     );
   }
 }
@@ -59,6 +61,7 @@ CustomStep.propTypes = {
   step: PropTypes.objectOf(PropTypes.any).isRequired,
   steps: PropTypes.objectOf(PropTypes.any).isRequired,
   style: PropTypes.objectOf(PropTypes.any).isRequired,
+  containerClass: PropTypes.objectOf(PropTypes.any),
   triggerNextStep: PropTypes.func.isRequired
 };
 CustomStep.defaultProps = {
