@@ -424,7 +424,7 @@ class ChatBot extends Component {
   };
 
   handleKeyPress = event => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && this.state.inputValue) {
       this.submitUserMessage();
     }
   };
@@ -709,7 +709,7 @@ class ChatBot extends Component {
                   style={submitButtonStyle}
                   onClick={this.handleSubmitButton}
                   invalid={inputInvalid}
-                  disabled={disabled}
+                  disabled={!inputValue || disabled}
                   speaking={speaking}
                 >
                   {icon}
