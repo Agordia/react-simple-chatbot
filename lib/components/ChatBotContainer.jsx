@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import defaultTheme from '../theme';
 
+export const FULL_SCREEN_TRIGGER_WIDTH = 568;
 const ChatBotContainer = styled.div`
   background: ${({ theme }) => theme.background};
   border-radius: 10px;
@@ -21,7 +22,7 @@ const ChatBotContainer = styled.div`
   transform-origin: ${({ floatingStyle }) => floatingStyle.transformOrigin || 'bottom right'};
   transition: transform 0.3s ease;
 
-  @media screen and (max-width: 568px) {
+  @media screen and (max-width: ${FULL_SCREEN_TRIGGER_WIDTH}px) {
     border-radius: ${({ floating }) => (floating ? '0' : '')};
     bottom: 0 !important;
     left: initial !important;
